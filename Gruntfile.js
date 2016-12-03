@@ -8,6 +8,8 @@ module.exports = grunt => {
     const fontsDir = targetDir + 'fonts/'
     const cssDir = targetDir + 'css/'
 
+    const isProd = process.env.NODE_ENV === 'production'
+
     grunt.initConfig({
 
         project: {},
@@ -47,17 +49,34 @@ module.exports = grunt => {
         browserify: {
             options: {
                 transform: [
-                    ['babelify', {presets: ['react', 'es2015']}],
-                    'browserify-shim'],
+                    'babelify',
+                ],
                 browserifyOptions: {
-                    debug: true
+                    debug: !isProd
                 }
             },
             [jsDir + 'bundle.js']: srcDir + 'js/**'
         },
+
+        uglify: {
+            bundle: {
+                files: {
+                    [jsDir + 'bundle.js']: [jsDir + 'bundle.js']
+                }
+            },
+        },
+
+        cssmin: {
+            style: {
+                files: {
+                    [cssDir + 'style.css']: [cssDir + 'style.css']
+                }
+            }
+        },
+
         sass: {
             options: {
-                sourceMap: true,
+                sourceMap: !isProd,
                 includePaths: [libDir]
             },
             dist: {
@@ -80,7 +99,16 @@ module.exports = grunt => {
         }
     });
 
+
+    if (isProd) {
+        grunt.task.registerTask('js', ['browserify', 'uglify'])
+        grunt.task.registerTask('css', ['sass', 'cssmin'])
+    } else {
+        grunt.task.registerTask('js', ['browserify'])
+        grunt.task.registerTask('css', ['sass'])
+    }
+
     require('load-grunt-tasks')(grunt)
-    grunt.task.registerTask('default', ['clean', 'browserify', 'sass', 'copy'])
+    grunt.task.registerTask('default', ['clean', 'js', 'css', 'copy'])
 
 };

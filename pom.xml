@@ -50,6 +50,9 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
+                            <environmentVariables>
+                                <NODE_ENV>${NODE_ENV}</NODE_ENV>
+                            </environmentVariables>
                             <executable>grunt</executable>
                         </configuration>
                     </execution>
@@ -94,4 +97,24 @@
             <artifactId>thymeleaf-extras-springsecurity4</artifactId>
         </dependency>
     </dependencies>
+
+
+    <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>dev</id>
+            <properties>
+                <NODE_ENV>development</NODE_ENV>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <NODE_ENV>production</NODE_ENV>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>
