@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 import TodoList from './todoList'
 import RestClient from './restClient'
+import 'whatwg-fetch'
 
 //Init boostrap
 require('bootstrap')
