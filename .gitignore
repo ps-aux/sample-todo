@@ -1,4 +1,6 @@
 target
 *.iml
 .idea
+*.log
+tomcat
 node_modules
