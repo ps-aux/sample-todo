@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<head>
+    <meta name="token" th:content="${token}"/>
+    <meta name="apiRoot" th:content="'/api'"/>
+</head>
+<body>
+<div layout:fragment="content" id="app">
+    <script src="js/bundle.js"></script>
+</div>
+</body>
+</html>

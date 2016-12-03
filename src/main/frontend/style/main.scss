@@ -1,0 +1,54 @@
+@import 'font-awesome/scss/font-awesome';
+@import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+#app-body {
+  max-width: 400px;
+}
+
+#login {
+  max-width: 400px;
+}
+
+.top-offset {
+  height: 100px;
+}
+
+#app .content {
+  margin-top: 100px;
+}
+
+.todo-control {
+  $hover-color: gray;
+  padding-right: 5px;
+
+  &:hover {
+    cursor: pointer;
+    color: $hover-color;
+  }
+
+  &:active {
+    color: darken($hover-color, 30%)
+  }
+}
+
+.todo-item input {
+  width: 80%;
+  border: none;
+  background: none;
+  outline: none;
+  &:enabled {
+    font-style: italic;
+  }
+}
+
+.error {
+  color: #A94442;
+}
+
+.info {
+  color: #BCE8F1;
+}
+
+#app .navbar {
+  padding-right: 20px;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorator="layout">
+<body>
+<div layout:fragment="content" id="login"
+     class="container-fluid">
+    <form action="/login" method="post">
+
+        <h3 th:text="${param.logout}? 'Yout have been logged out.' : 'Welcome' ">
+        </h3>
+
+        <div class="error" th:if="${param.error}">
+            <strong>Invalid username or password.</strong>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name"
+                   class="form-control"
+                   name="username"
+                   placeholder="{alice | bob }" th:required="true"/>
+        </div>
+        <div class="form-group">
+            <label for="pass">Password</label>
+            <input type="password" id="pass"
+                   class="form-control"
+                   name="password"
+                   placeholder="name + .." th:required="true"/>
+        </div>
+        <input type="submit" value="Enter" class="btn btn-primary"/>
+
+    </form>
+</div>
+</body>
+
+</html>
