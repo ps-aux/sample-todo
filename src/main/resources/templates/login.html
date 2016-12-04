@@ -5,7 +5,7 @@
      class="container-fluid">
     <form action="/login" method="post">
 
-        <h3 th:text="${param.logout}? 'Yout have been logged out.' : 'Welcome' ">
+        <h3 th:text="${param.logout}? 'You have been logged out.' : 'Welcome' ">
         </h3>
 
         <div class="error" th:if="${param.error}">

@@ -8,11 +8,6 @@ import sk.luce.data.validation.TodoValidator;
 @Configuration
 public class RestRepoConfig extends RepositoryRestConfigurerAdapter {
 
-/*    @Override
-    protected void configureValidatingRepositoryEventListener(ValidatingRepositoryEventListener v) {
-
-    }*/
-
     @Override
     public void configureValidatingRepositoryEventListener(ValidatingRepositoryEventListener listener) {
         super.configureValidatingRepositoryEventListener(listener);

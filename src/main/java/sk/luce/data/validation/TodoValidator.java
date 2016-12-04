@@ -19,7 +19,5 @@ public class TodoValidator implements Validator {
         if (todo.getText() == null ||
                 todo.getText().isEmpty())
             errors.rejectValue("text", null, "Text cannot be empty");
-
-
     }
 }

@@ -103,7 +103,6 @@ public class SecurityConfig {
             /** Using the plain text password will also work for api
              * Because of the first one authentication manager
              */
-
         }
 
 

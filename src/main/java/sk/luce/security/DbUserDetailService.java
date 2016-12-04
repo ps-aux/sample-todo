@@ -24,8 +24,6 @@ public class DbUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
         UserAccount acc = userRepo.findByName(username);
-        // When acc == null ends with exception and 401 is returned
-
         if (acc == null)
             throw new UsernameNotFoundException("User " + username + "not found");
 
