@@ -46,22 +46,27 @@ class RestClient {
                         done([])
                     else
                         done(d.content)
-                }, err))
+                }, err)).catch(err)
     }
 
     create(todo, done, err) {
         this.doFetch('POST', this.todoPath, todo)
             .then(res => this.process(res, 201, done, err))
+            .catch(err)
     }
 
     update(todo, done, err) {
         this.doFetch('PUT', this._findSelfLink(todo), todo)
             .then(res => this.process(res, 200, done, err))
+            .catch(err)
     }
 
     delete(todo, done, err) {
         this.doFetch('DELETE', this._findSelfLink(todo))
-            .then(res => this.process(res, 204, done, err, true))
+            .then(res => {
+                this.process(res, 204, done, err, true)
+            })
+            .catch(err)
     }
 
     process(res, status, done, errHandler, ignoreData = false) {

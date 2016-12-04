@@ -22,6 +22,7 @@ export default class TodoList extends React.Component {
      * Error handler
      */
     handleProblem() {
+        this.state.operationFailed = true
         this.readItems()
     }
 
@@ -33,7 +34,12 @@ export default class TodoList extends React.Component {
         RestClient.findAllTodo(
             todos => {
                 this.setState({items: todos, loading: false})
-            })
+            },
+            () => {
+                console.log("Getting items failed")
+                this.setState({operationFailed: true, items: [], loading: false})
+            }
+        )
     }
 
 
@@ -114,6 +120,8 @@ export default class TodoList extends React.Component {
             // So this is called just once - when edit mode started
             this.editModeStarted = false
         }
+
+        this.state.operationFailed = false
     }
 
 
@@ -134,13 +142,10 @@ export default class TodoList extends React.Component {
                     </button>
                     <hr/>
 
-                    {!this.state.loading && this.state.items.length < 1 && <strong>
-                        You have no tasks :( </strong>}
-
-                    {this.state.loading && <strong> Retrieving data... </strong>}
+                    {this.renderMessages()}
 
                     <ul className="list-group">
-                        {this.state.items.map((td, i) => {
+                        {this.state.items && this.state.items.map((td, i) => {
                             return (editMode && i === editIndex) ? this.editMode(td, i) : this.readMode(td, i)
                         })
                         }
@@ -148,6 +153,24 @@ export default class TodoList extends React.Component {
                 </div>
             </div>
         )
+    }
+
+    renderMessages() {
+        //TODO omg refactor this if hell
+        return (<div>
+            {this.state.operationFailed &&
+            <div className="alert alert-danger" role="alert">
+                <strong>Sorry</strong> Operation did not succeed :(
+            </div>}
+
+            {!this.state.loading && !this.state.operationFailed &&
+            this.state.items.length < 1 &&
+            <div className="alert alert-success" role="alert">
+                <strong>Well done!</strong> You have no pending tasks :)
+            </div> }
+
+            {this.state.loading && <strong> Retrieving data... </strong>}
+        </div>)
     }
 
     readMode(todo, i) {
