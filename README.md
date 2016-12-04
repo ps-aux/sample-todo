@@ -1,5 +1,5 @@
 # sample-todo
-Sample TODO single page app using Spring Boot, Spring Data Rest, React, ES6, ...
+Sample TODO single page app using Spring Boot, Spring Data Rest, React, ES6, Boostrap ...
 
 ## Setup
 To build the project be sure to have `maven`, `npm` and `grunt` installed and in your `PATH`
