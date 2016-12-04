@@ -35,13 +35,20 @@ public class DbFiller {
                 new String[]{
                         "see doctor",
                         "uninstall Windows",
+                        "call agent",
+                        "pay insuerance",
+                        "order new headphones",
+                        "finish app",
+                        "learn how to dance",
                         "take shower"});
 
         fillUser("bob",
                 new String[]{
                         "cook dinner",
                         "bake a cake",
-                        "buy apples",
+                        "buy eggs",
+                        "call mom",
+                        "finish taxes",
                         "call the doctor",
                         "clean kitchen",
                         "go to gym"});
